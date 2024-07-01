@@ -10,24 +10,27 @@
 <body>
   <div class="container">
     <h1 class="title">To Do List</h1>
-    <div class="input-box">
-      <input type="text" placeholder="오늘의 할일">
-      <button type="button">+</button>
-    </div>
-    <div class="tab-box">
+    <section class="input-box">
+      <input type="text" placeholder="오늘의 할일" id="todo-input">
+      <button type="button" id="add-btn">+</button>
+    </section>
+    <section class="tab-box">
+      <div class="underline"></div>
       <div class="tab">전체</div>
       <div class="tab">진행중</div>
       <div class="tab">끝남</div>
-    </div>
-    <div class="todo-list">
-      <div class="todo-item">
-        커피마시기
-      </div>
-      <div class="btn-box">
-        <button type="button">check</button>
-        <button type="button">delete</button>
-      </div>
-    </div>
+    </section>
+    <section class="todo-board">
+      <!-- <div class="todo-list">
+        <div class="todo-item">
+          커피마시기
+        </div>
+        <div class="btn-box">
+          <button type="button" id="check">check</button>
+          <button type="button" id="delete">delete</button>
+        </div>
+      </div> -->
+    </section>
 
 
 

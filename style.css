@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  height: 100vh;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   background-color: #fff;
 }
@@ -24,10 +25,21 @@ body {
   display: flex;
   border: 1px solid lightgray;
   margin: 0 10px 0;
+  position: relative;
 }
 
 .tab {
   padding: 15px 20px;
+}
+
+.underline {
+  position: absolute;
+  height: 3px;
+  width: 80px;
+  background-color: gold;
+  padding: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .todo-list { 
