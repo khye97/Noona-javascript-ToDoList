@@ -12,10 +12,28 @@ body {
   background-color: #fff;
 }
 
+.title {
+  padding: 20px;
+}
+
+.input-box {
+  margin: 0 10px 20px;
+}
+
 .tab-box {
   display: flex;
+  border: 1px solid lightgray;
+  margin: 0 10px 0;
+}
+
+.tab {
+  padding: 15px 20px;
 }
 
 .todo-list { 
   display: flex;
+  border: 1px solid lightgray;
+  padding: 15px;
+  margin: 0 10px;
+  justify-content: space-between;
 }
