@@ -36,7 +36,8 @@ function addTask (){
 function render (){
   let resultHTML = '';
   for (let i = 0; i < inputValueList.length; i++){
-    resultHTML += `<div class="todo-list">
+    if (inputValueList[i].isComplete == true){
+      resultHTML += `<div class="todo-list task-done">
                       <div class="todo-item">
                         <span>${inputValueList[i].taskContent}</span>
                       </div>
@@ -45,8 +46,19 @@ function render (){
                         <button onclick="deleteTask()" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </div>
                     </div>`
-                    // 조심해야 할 것
-                    // <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button> 이 코드에서 toggleComplete('') 안에 따옴표를 넣는 것은 이게 함수이고 매개변수로 들어갈 값이 문자열(${inputValueList[i].id})이기 때문 
+    // 조심해야 할 것
+    // <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button> 이 코드에서 toggleComplete('') 안에 따옴표를 넣는 것은 이게 함수이고 매개변수로 들어갈 값이 문자열(${inputValueList[i].id})이기 때문
+    } else {
+      resultHTML += `<div class="todo-list">
+                      <div class="todo-item">
+                        <span>${inputValueList[i].taskContent}</span>
+                      </div>
+                      <div class="btn-box">
+                        <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button>
+                        <button onclick="deleteTask()" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
+                      </div>
+                    </div>`
+    }
   }
   document.querySelector('.todo-board').innerHTML = resultHTML;
 }
@@ -54,6 +66,15 @@ function render (){
 // false->true / true->false 바꾸는 함수
 function toggleComplete (id){
   console.log(id);
+  for (let i = 0; i < inputValueList.length; i++){
+    if (inputValueList[i].id == id){
+      inputValueList[i].isComplete = !inputValueList[i].isComplete;
+      break;
+    }
+  }
+  render(); 
+  // 조심해야 할 것
+  // 버튼을 클릭할 때 실행되는 함수는 toggleComplete이므로 toggleComplete을 클릭했을 때 html이 그려지게 하려면 render()를 무조건 호출해줘야 한다
 }
 
 function deleteTask (){
