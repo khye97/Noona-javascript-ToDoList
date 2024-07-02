@@ -4,13 +4,15 @@
 }
 
 body {
-  background-color: #eee;
+  /* background-color: #F5F5DC; */
+  background-color: #F7F9F2;
 }
 
 .container {
   height: 100vh;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   background-color: #fff;
+  max-width: 800px;
 }
 
 .title {
@@ -21,6 +23,23 @@ body {
   margin: 0 10px 20px;
 }
 
+#todo-input {
+  width: 30em;
+  height: 2.5em;
+  border: 1px solid lightgray;
+  padding-left: 10px;
+}
+
+#todo-input:focus {
+  border-color: #87A922;
+  outline: none;
+}
+
+#add-btn {
+  padding: 8px 14px;
+  border: 1px solid lightgray;
+}
+
 .tab-box {
   display: flex;
   border: 1px solid lightgray;
@@ -29,14 +48,14 @@ body {
 }
 
 .tab {
-  padding: 15px 20px;
+  padding: 1em;
 }
 
 .underline {
   position: absolute;
   height: 3px;
   width: 80px;
-  background-color: gold;
+  background-color: #87A922;
   padding: 0;
   bottom: 0;
   left: 0;
@@ -44,8 +63,46 @@ body {
 
 .todo-list { 
   display: flex;
-  border: 1px solid lightgray;
-  padding: 15px;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
   margin: 0 10px;
   justify-content: space-between;
+}
+
+.todo-item {
+  padding: 1em;
+}
+
+.btn-box {
+  font-size: 0;
+}
+
+.icon-btn {
+  padding: 20px 30px;
+  background-color: #fff;
+  border: none;
+  font-size: 18px;
+}
+
+.icon-btn:hover {
+  background-color: #eee;
+}
+
+/* font awesome icon*/
+.fa-plus {
+  color: #87A922;
+}
+
+.fa-check {
+  color: #06D001;
+}
+
+.fa-trash-can {
+  color: red;
+}
+
+.checked {
+  background-color: #ccc;
+  text-decoration: line-through;
 }
