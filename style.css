@@ -51,6 +51,10 @@ body {
   padding: 1em;
 }
 
+.tab:hover {
+  cursor: pointer;
+}
+
 .underline {
   position: absolute;
   height: 3px;

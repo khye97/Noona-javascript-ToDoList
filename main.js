@@ -17,7 +17,9 @@ let addBtn = document.getElementById('add-btn');
 let checkBtn = document.getElementById('check');
 let deleteBtn = document.getElementById('delete');
 let todoList = document.querySelector('.todo-list');
+let tabs = document.querySelectorAll('.tab');
 let inputValueList = [];
+
 
 
 addBtn.addEventListener('click', addTask);
@@ -42,8 +44,8 @@ function render (){
                         <span>${inputValueList[i].taskContent}</span>
                       </div>
                       <div class="btn-box">
-                        <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button>
-                        <button onclick="deleteTask()" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
+                        <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                        <button onclick="deleteTask('${inputValueList[i].id}')" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </div>
                     </div>`
     // 조심해야 할 것
@@ -55,7 +57,7 @@ function render (){
                       </div>
                       <div class="btn-box">
                         <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button>
-                        <button onclick="deleteTask()" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
+                        <button onclick="deleteTask('${inputValueList[i].id}')" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </div>
                     </div>`
     }
@@ -77,9 +79,40 @@ function toggleComplete (id){
   // 버튼을 클릭할 때 실행되는 함수는 toggleComplete이므로 toggleComplete을 클릭했을 때 html이 그려지게 하려면 render()를 무조건 호출해줘야 한다
 }
 
-function deleteTask (){
-  console.log('삭제됨'); // 잘 작동함
+function deleteTask (id){
+  console.log('삭제됨', id); // 잘 작동함
+  for (let i = 0; i < inputValueList.length; i++){
+    if (inputValueList[i].id == id){
+      inputValueList.splice(i, 1);
+      break;
+    }
+  }
+  console.log(inputValueList);
+  render();
 }
+
+document.querySelector('.done').addEventListener('click', function(){
+  console.log('done 버튼 누름');
+  let result = inputValueList.filter(filterArray);
+  console.log(result);
+  for (let i = 0; i < result.length; i++){
+    if (result[i]){
+      render();
+    }
+  }
+});
+
+function filterArray (item){
+  return item.isComplete == true;
+}
+
+
+// document.getElementById('remove-all').addEventListener('click', function(){
+//   for (let i = 0; i < inputValueList.length; i++){
+//     document.querySelectorAll('.todo-list')[i].remove();
+//   }
+  
+// });
 
 function generateRandomId (){
   return "_" + Math.random().toString(36).substring(2, 9);
