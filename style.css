@@ -58,11 +58,12 @@ body {
 .underline {
   position: absolute;
   height: 3px;
-  width: 80px;
+  width: 64px;
   background-color: #87A922;
   padding: 0;
-  bottom: 0;
+  top: 53px;
   left: 0;
+  transition: 0.4s;
 }
 
 .todo-list { 
