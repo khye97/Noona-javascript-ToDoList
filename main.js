@@ -17,6 +17,7 @@ let userInput = document.getElementById('todo-input');   // 유저 인풋 값
 let addBtn = document.getElementById('add-btn');  // + 버튼
 let checkBtn = document.getElementById('check');  // 체크 버튼
 let deleteBtn = document.getElementById('delete');  // 삭제 버튼
+let deleteAllBtn = document.getElementById('delete-all'); // 전체삭제 버튼
 let todoList = document.querySelector('.todo-list');  // 할일 목록 1개의 div
 let tabs = document.querySelectorAll('.tab');  // 탭 버튼들
 let inputValueList = [];  // 유저가 입력한 목록들
@@ -48,6 +49,7 @@ addBtn.addEventListener('click', addTask);
 function addTask (){
   if (userInput.value == ""){
     alert("할일을 입력하세요");
+    userInput.focus(); // 알림창 띄운 후 다시 input창에 포커스
     return;
   }
   let task = {
@@ -165,10 +167,14 @@ function render (){
   for (let i = 0; i < list.length; i++){
     if (list[i].isComplete == true){
       resultHTML += `<div class="todo-list task-done">
-                      <div class="todo-item">
-                        <span>${list[i].taskContent}</span>
+                      <div class="todo-item-box">
+                        <i class="fa-solid fa-circle"></i>
+                        <div class="todo-item">
+                          <span>${list[i].taskContent}</span>
+                        </div>
                       </div>
                       <div class="btn-box">
+                        <button onclick="editTask('${list[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-regular fa-pen-to-square"></i></button>
                         <button onclick="toggleComplete('${list[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-arrow-rotate-left"></i></button>
                         <button onclick="deleteTask('${list[i].id}')" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </div>
@@ -177,10 +183,15 @@ function render (){
     // <button onclick="toggleComplete('${inputValueList[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button> 이 코드에서 toggleComplete('') 안에 따옴표를 넣는 것은 이게 함수이고 매개변수로 들어갈 값이 문자열(${inputValueList[i].id})이기 때문
     } else {
       resultHTML += `<div class="todo-list">
-                      <div class="todo-item">
-                        <span>${list[i].taskContent}</span>
+                      <div class="todo-item-box">
+                        <i class="fa-regular fa-circle"></i>
+                        <div class="todo-item">
+                          <span>${list[i].taskContent}</span>
+                        </div>
                       </div>
+              
                       <div class="btn-box">
+                        <button onclick="editTask('${list[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-regular fa-pen-to-square"></i></button>
                         <button onclick="toggleComplete('${list[i].id}')" type="button" id="check" class="icon-btn"><i class="fa-solid fa-check"></i></button>
                         <button onclick="deleteTask('${list[i].id}')" type="button" id="delete" class="icon-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </div>
@@ -190,6 +201,20 @@ function render (){
   document.querySelector('.todo-board').innerHTML = resultHTML;
 }
 
+
+// 내용 수정하는 함수
+function editTask (id) {
+  let newContent = prompt("수정할 내용을 입력하세요");
+  if (newContent) {
+      for (let i = 0; i < inputValueList.length; i++) {
+          if (inputValueList[i].id === id) {
+              inputValueList[i].taskContent = newContent;
+              break;
+          }
+      }
+      render();
+  }
+}
 
 // false->true / true->false 바꾸는 함수
 // render()내부의 버튼에서 사용하고 있음 
@@ -205,6 +230,8 @@ function toggleComplete (id){
   // 조심해야 할 것
   // 버튼을 클릭할 때 실행되는 함수는 toggleComplete이므로 toggleComplete을 클릭했을 때 html이 그려지게 하려면 render()를 무조건 호출해줘야 한다
 }
+4
+
 
 // 클릭된 요소를 삭제하는 함수 
 function deleteTask (id){
@@ -217,6 +244,17 @@ function deleteTask (id){
   }
   console.log(inputValueList);
   filter();  // 여기도 정답코드와 다른점 : filter로 바꾼다 
+}
+
+
+
+// 전체삭제 기능 
+deleteAllBtn.addEventListener('click', deleteAll);
+
+function deleteAll (){
+  inputValueList.splice(0);
+  console.log(inputValueList);
+  document.querySelector('.todo-board').innerHTML = "";
 }
 
 
