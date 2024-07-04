@@ -205,15 +205,13 @@ function render (){
 // 내용 수정하는 함수
 function editTask (id) {
   let newContent = prompt("수정할 내용을 입력하세요");
-  if (newContent) {
-      for (let i = 0; i < inputValueList.length; i++) {
-          if (inputValueList[i].id === id) {
-              inputValueList[i].taskContent = newContent;
-              break;
-          }
-      }
-      render();
+  for (let i = 0; i < inputValueList.length; i++) {
+    if (inputValueList[i].id === id) {
+        inputValueList[i].taskContent = newContent;
+        break;
+    }
   }
+  render();
 }
 
 // false->true / true->false 바꾸는 함수
