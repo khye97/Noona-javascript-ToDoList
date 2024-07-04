@@ -5,7 +5,7 @@
 
 body {
   /* background-color: #F5F5DC; */
-  background: url(./image/rm141-nunny-02b.jpg);
+  background: url(./image/background.jpg);
   /* background-color: #eee; */
   font-family: "Noto Serif KR", serif;
   font-weight: 600;
@@ -175,18 +175,7 @@ body {
 }
 
 
-/* .edit-input {
-  display: none;
-}
-
-.edit-active {
-  display: block;
-} */
-
 @media screen and (max-width: 50em) {
-  .input-box {
-  }
-
   #todo-input {
     width: 50%;
   }
@@ -198,5 +187,4 @@ body {
   .btn-box {
     margin-right: 10px;
   }
-
 }
