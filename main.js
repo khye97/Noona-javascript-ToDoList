@@ -256,9 +256,14 @@ function deleteTask (id){
 deleteAllBtn.addEventListener('click', deleteAll);
 
 function deleteAll (){
-  inputValueList.splice(0);
-  console.log(inputValueList);
-  document.querySelector('.todo-board').innerHTML = "";
+  let deleteAllCehck = confirm("정말 전체 삭제하시겠습니까? 삭제된 내용은 복구할 수 없습니다.");
+  if(deleteAllCehck == true){
+    inputValueList.splice(0);
+    console.log(inputValueList);
+    document.querySelector('.todo-board').innerHTML = "";
+  } else {
+    return;
+  } 
 }
 
 
