@@ -234,11 +234,17 @@ function toggleComplete (id){
 // 클릭된 요소를 삭제하는 함수 
 function deleteTask (id){
   console.log('삭제됨', id); // 잘 작동함
-  for (let i = 0; i < inputValueList.length; i++){
-    if (inputValueList[i].id == id){
-      inputValueList.splice(i, 1);
-      break;
+  let deleteCheck = confirm("정말 삭제하시겠습니까?");
+  console.log(deleteCheck);
+  if (deleteCheck == true){
+    for (let i = 0; i < inputValueList.length; i++){
+      if (inputValueList[i].id == id){
+        inputValueList.splice(i, 1);
+        break;
+      }
     }
+  } else {
+    return;
   }
   console.log(inputValueList);
   filter();  // 여기도 정답코드와 다른점 : filter로 바꾼다 
